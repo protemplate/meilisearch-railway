@@ -57,9 +57,9 @@ make deploy-local
 
 Additional environment variables available:
 
-- `MEILI_DB_PATH` - Database file path (default: `/data/data.ms`)
-- `MEILI_SNAPSHOT_DIR` - Snapshot directory (default: `/data/snapshots`)
-- `MEILI_DUMP_DIR` - Dump directory (default: `/data/dumps`)
+- `MEILI_DB_PATH` - Database file path (default: `/meili_data/data.ms`)
+- `MEILI_SNAPSHOT_DIR` - Snapshot directory (default: `/meili_data/snapshots`)
+- `MEILI_DUMP_DIR` - Dump directory (default: `/meili_data/dumps`)
 - `MEILI_IMPORT_SNAPSHOT` - Import snapshot on startup
 - `MEILI_IMPORT_DUMP` - Import dump on startup
 - `MEILI_SCHEDULE_SNAPSHOT` - Snapshot schedule in seconds

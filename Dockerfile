@@ -3,10 +3,10 @@ ARG MEILISEARCH_VERSION=latest
 FROM getmeili/meilisearch:${MEILISEARCH_VERSION}
 
 # Create data directory for persistence
-RUN mkdir -p /data/snapshots /data/dumps
+RUN mkdir -p /meili_data/snapshots /meili_data/dumps
 
 # Set working directory
-WORKDIR /data
+WORKDIR /meili_data
 
 # Expose the default Meilisearch port
 EXPOSE 7700

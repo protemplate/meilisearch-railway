@@ -15,14 +15,14 @@ services:
       - MEILI_LOG_LEVEL=${MEILI_LOG_LEVEL:-INFO}
       - MEILI_HTTP_ADDR=${MEILI_HTTP_ADDR:-0.0.0.0:7700}
       - MEILI_NO_ANALYTICS=${MEILI_NO_ANALYTICS:-false}
-      - MEILI_DB_PATH=${MEILI_DB_PATH:-/data/data.ms}
-      - MEILI_SNAPSHOT_DIR=${MEILI_SNAPSHOT_DIR:-/data/snapshots}
-      - MEILI_DUMP_DIR=${MEILI_DUMP_DIR:-/data/dumps}
+      - MEILI_DB_PATH=${MEILI_DB_PATH:-/meili_data/data.ms}
+      - MEILI_SNAPSHOT_DIR=${MEILI_SNAPSHOT_DIR:-/meili_data/snapshots}
+      - MEILI_DUMP_DIR=${MEILI_DUMP_DIR:-/meili_data/dumps}
       - MEILI_IMPORT_SNAPSHOT=${MEILI_IMPORT_SNAPSHOT:-}
       - MEILI_IMPORT_DUMP=${MEILI_IMPORT_DUMP:-}
       - MEILI_SCHEDULE_SNAPSHOT=${MEILI_SCHEDULE_SNAPSHOT:-}
     volumes:
-      - meilisearch_data:/data
+      - meili_data:/meili_data
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
@@ -32,4 +32,4 @@ services:
       start_period: 5s
 
 volumes:
-  meilisearch_data:
+  meili_data:

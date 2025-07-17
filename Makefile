@@ -28,7 +28,7 @@ run: build ## Run Meilisearch locally
 		-p 7700:7700 \
 		-e MEILI_MASTER_KEY=$(MEILI_MASTER_KEY) \
 		-e MEILI_ENV=$(MEILI_ENV) \
-		-v meilisearch_data:/data \
+		-v meili_data:/meili_data \
 		$(IMAGE_NAME):$(MEILISEARCH_VERSION)
 	@echo "Meilisearch is running at http://localhost:7700"
 	@echo "Master Key: $(MEILI_MASTER_KEY)"
@@ -68,7 +68,7 @@ clean: ## Clean up Docker containers and images
 	docker stop meilisearch-dev meilisearch-test 2>/dev/null || true
 	docker rm meilisearch-dev meilisearch-test 2>/dev/null || true
 	docker rmi $(IMAGE_NAME):$(MEILISEARCH_VERSION) $(IMAGE_NAME):test 2>/dev/null || true
-	docker volume rm meilisearch_data 2>/dev/null || true
+	docker volume rm meili_data 2>/dev/null || true
 
 deploy-local: ## Deploy using docker-compose
 	@echo "Deploying locally with docker-compose..."
