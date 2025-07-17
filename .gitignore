@@ -1,0 +1,21 @@
+# Environment files
+.env
+.env.local
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Railway
+.railway/
+
+# Data
+data/
+meili_data/

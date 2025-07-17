@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  meilisearch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        MEILISEARCH_VERSION: ${MEILISEARCH_VERSION:-latest}
+    ports:
+      - "7700:7700"
+    environment:
+      - MEILI_MASTER_KEY=${MEILI_MASTER_KEY}
+      - MEILI_ENV=${MEILI_ENV:-production}
+      - MEILI_LOG_LEVEL=${MEILI_LOG_LEVEL:-INFO}
+      - MEILI_HTTP_ADDR=${MEILI_HTTP_ADDR:-0.0.0.0:7700}
+      - MEILI_NO_ANALYTICS=${MEILI_NO_ANALYTICS:-false}
+      - MEILI_DB_PATH=${MEILI_DB_PATH:-/data/data.ms}
+      - MEILI_SNAPSHOT_DIR=${MEILI_SNAPSHOT_DIR:-/data/snapshots}
+      - MEILI_DUMP_DIR=${MEILI_DUMP_DIR:-/data/dumps}
+      - MEILI_IMPORT_SNAPSHOT=${MEILI_IMPORT_SNAPSHOT:-}
+      - MEILI_IMPORT_DUMP=${MEILI_IMPORT_DUMP:-}
+      - MEILI_SCHEDULE_SNAPSHOT=${MEILI_SCHEDULE_SNAPSHOT:-}
+    volumes:
+      - meilisearch_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  meilisearch_data:

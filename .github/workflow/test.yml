@@ -1,0 +1,43 @@
+name: Test Meilisearch Template
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        meilisearch_version: ["latest", "v1.15", "v1.14", "v1.13"]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Test build with Meilisearch ${{ matrix.meilisearch_version }}
+      run: |
+        docker build --build-arg MEILISEARCH_VERSION=${{ matrix.meilisearch_version }} -t meilisearch-test:${{ matrix.meilisearch_version }} .
+    
+    - name: Test run with Meilisearch ${{ matrix.meilisearch_version }}
+      run: |
+        docker run -d --name meilisearch-test \
+          -p 7700:7700 \
+          -e MEILI_MASTER_KEY=test-key-for-ci \
+          -e MEILI_ENV=development \
+          meilisearch-test:${{ matrix.meilisearch_version }}
+        
+        # Wait for service to be ready
+        sleep 10
+        
+        # Test health endpoint
+        curl -f http://localhost:7700/health
+        
+        # Test with master key
+        curl -H "Authorization: Bearer test-key-for-ci" \
+          -f http://localhost:7700/version
+        
+        # Stop container
+        docker stop meilisearch-test
+        docker rm meilisearch-test
