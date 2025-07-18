@@ -17,7 +17,7 @@ if [ -n "$PORT" ]; then
     fi
 else
     # Fallback for local development
-    export MEILI_HTTP_ADDR="${MEILI_HTTP_ADDR:-0.0.0.0:7700}"
+    export MEILI_HTTP_ADDR="[::]:8080"
     echo "Using MEILI_HTTP_ADDR: $MEILI_HTTP_ADDR"
 fi
 
