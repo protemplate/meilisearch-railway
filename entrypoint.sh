@@ -5,7 +5,7 @@
 if [ -n "$PORT" ]; then
     # Bind to all interfaces (::) to support both IPv4 and IPv6
     # This allows connections from both public and private networks
-    export MEILI_HTTP_ADDR="[::]:$PORT"
+    export MEILI_HTTP_ADDR=":::$PORT"
     echo "Railway environment detected"
     echo "Binding to [::]:$PORT (all interfaces - public and private)"
     
