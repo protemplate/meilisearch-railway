@@ -1,8 +1,8 @@
 # Meilisearch Railway Template
 
-Deploy [Meilisearch](https://www.meilisearch.com/), the lightning-fast search engine, to [Railway](https://railway.com/deploy/meilisearch-flexible-version) with one click.
+Deploy [Meilisearch](https://www.meilisearch.com/), the lightning-fast search engine, to [Railway](https://railway.com/deploy/meilisearch-flexible-version?referralCode=KKAfTD) with one click.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/meilisearch-flexible-version)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/meilisearch-flexible-version?referralCode=KKAfTD)
 
 ## Features
 
