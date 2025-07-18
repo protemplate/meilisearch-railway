@@ -1,8 +1,8 @@
 # Meilisearch Railway Template
 
-Deploy [Meilisearch](https://www.meilisearch.com/), the lightning-fast search engine, to [Railway](https://railway.app) with one click.
+Deploy [Meilisearch](https://www.meilisearch.com/), the lightning-fast search engine, to [Railway](https://railway.com/deploy/meilisearch-flexible-version) with one click.
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/meilisearch)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/meilisearch-flexible-version)
 
 ## Features
 
