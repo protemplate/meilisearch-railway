@@ -14,6 +14,7 @@ Deploy [Meilisearch](https://www.meilisearch.com/), the lightning-fast search en
 - 🛠️ Easy local development setup
 - 📊 Health checks and monitoring ready
 - 🔧 Customizable environment configuration
+- 🔗 Railway private networking support for service-to-service communication
 
 ## Quick Start
 
@@ -128,6 +129,34 @@ openssl rand -base64 32
 3. **Enable HTTPS** through Railway's automatic SSL
 4. **Regularly backup** your data using Meilisearch dumps
 5. **Monitor logs** and set appropriate log levels
+
+## Private Networking
+
+Railway's private networking is automatically supported, allowing services to communicate internally without going through the public internet.
+
+### How It Works
+
+Your Meilisearch instance is automatically accessible at both:
+- **Public**: `https://your-app.railway.app`
+- **Private**: `http://meilisearch.railway.internal` (within your Railway project)
+
+### Using Private Networking
+
+From other Railway services in the same project:
+
+```javascript
+// Connect using the private domain
+const client = new MeiliSearch({
+  host: 'http://meilisearch.railway.internal',
+  apiKey: process.env.MEILI_MASTER_KEY
+})
+```
+
+Benefits:
+- 🔒 Enhanced security - internal traffic stays private
+- ⚡ Better performance - lower latency
+- 💰 Cost savings - no bandwidth charges for internal traffic
+- 🔧 Service isolation - services only accessible within your project
 
 ## Development
 

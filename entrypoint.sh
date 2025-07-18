@@ -1,10 +1,20 @@
 #!/bin/sh
 
 # Railway provides PORT environment variable
-# We need to bind Meilisearch to 0.0.0.0:$PORT for Railway to route traffic properly
+# Always bind to all interfaces to support both public and private networking
 if [ -n "$PORT" ]; then
-    export MEILI_HTTP_ADDR="0.0.0.0:$PORT"
-    echo "Railway environment detected. Binding to 0.0.0.0:$PORT"
+    # Bind to all interfaces (::) to support both IPv4 and IPv6
+    # This allows connections from both public and private networks
+    export MEILI_HTTP_ADDR="[::]:$PORT"
+    echo "Railway environment detected"
+    echo "Binding to [::]:$PORT (all interfaces - public and private)"
+    
+    # Show available access points if private networking is available
+    if [ -n "$RAILWAY_PRIVATE_DOMAIN" ]; then
+        echo "Service accessible at:"
+        echo "  - Public: via your Railway public domain"
+        echo "  - Private: http://$RAILWAY_PRIVATE_DOMAIN"
+    fi
 else
     # Fallback for local development
     export MEILI_HTTP_ADDR="${MEILI_HTTP_ADDR:-0.0.0.0:7700}"
