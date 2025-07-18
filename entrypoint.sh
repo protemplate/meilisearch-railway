@@ -5,7 +5,7 @@
 if [ -n "$PORT" ]; then
     # Bind to all interfaces (::) to support both IPv4 and IPv6
     # This allows connections from both public and private networks
-    export MEILI_HTTP_ADDR=":::$PORT"
+    export MEILI_HTTP_ADDR="[::]:$PORT"
     echo "Railway environment detected"
     echo "Binding to [::]:$PORT (all interfaces - public and private)"
     
@@ -13,11 +13,13 @@ if [ -n "$PORT" ]; then
     if [ -n "$RAILWAY_PRIVATE_DOMAIN" ]; then
         echo "Service accessible at:"
         echo "  - Public: via your Railway public domain"
-        echo "  - Private: http://$RAILWAY_PRIVATE_DOMAIN"
+        echo "  - Private: http://$RAILWAY_PRIVATE_DOMAIN:$PORT"
+        echo ""
+        echo "IMPORTANT: Always include :$PORT when connecting via private networking!"
     fi
 else
     # Fallback for local development
-    export MEILI_HTTP_ADDR=":::8080"
+    export MEILI_HTTP_ADDR="[::]:7700"
     echo "Using MEILI_HTTP_ADDR: $MEILI_HTTP_ADDR"
 fi
 
