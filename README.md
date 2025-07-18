@@ -80,7 +80,6 @@ make test-versions     # Test multiple versions
 
 # Deployment
 make deploy-local      # Deploy with docker-compose
-make deploy-railway    # Interactive Railway deployment
 
 # Utilities
 make logs              # View container logs
